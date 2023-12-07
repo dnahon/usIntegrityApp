@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+    <h1>
+        Welcome to the super simple leagues/teams app!
+    </h1>
+    <a href="{% url 'admin:index' %}">Admin Panel</a>
+{% for league in leagues %}
+<table>
+  <tr>
+    <th>{{league.abbreviation}}</th>
+  </tr>
+  <tr>
+    <td>Team Abbreviation</td>
+    <td>Team Name</td>
+  </tr>
+  {% for team in league.team_set.all %}
+  <tr>
+    <td>{{team.abbreviation}}</td>
+    <td>{{team.name}}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+<br>
+{% endfor %}
+
+</body>
+</html>
